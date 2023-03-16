@@ -7,6 +7,7 @@ from wtforms.validators import InputRequired
 from utils.VideoToAudio import main, deleteAudio
 from pathlib import Path
 from utils.Transcript import Transcript
+from utils.Download import save_text
 
 app = Flask(__name__)
 
@@ -34,7 +35,8 @@ def transcript():
         text = Transcript.get_transcript(file_name)
         deleteAudio(audio= file_name)
         
-        return render_template('text.html', text=text) 
+        return save_text(text), os.remove('file.txt')
+        #return render_template('text.html', text=text) 
     
     else:              
         return "ko"
