@@ -3,11 +3,16 @@ import whisper
 class Transcript:
     @classmethod
     def get_transcript(self, audio):
+        try:       
+            #return
+            model = whisper.load_model("small")
+            result = model.transcribe(audio, fp16=False)
+            return result["text"]
+        except FileNotFoundError:
+            raise Exception('Archivo no encontrado')
+        except Exception as e:
+            raise Exception(str(e))
         
-        #return
-        model = whisper.load_model("small")
-        result = model.transcribe(audio, fp16=False)
-        return result["text"]
     
     """
     base object:

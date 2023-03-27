@@ -1,5 +1,6 @@
 const form= document.getElementById('form');
 const gif= document.getElementById('gif');
+const errorDiv= document.getElementById('error');
 
 function succesImg(){
     
@@ -31,7 +32,10 @@ form.addEventListener('submit', (e)=>{
         })
         
         .catch(error => {
-          console.error('Error downloading file:', error);
+          
+          let errorMessage = error.message;
+    // Mostrar el mensaje de error en un div vacío
+          errorDiv.textContent = errorMessage;
           // Handle the error here
         });
     });
