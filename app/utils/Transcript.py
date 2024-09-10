@@ -5,7 +5,7 @@ class Transcript:
     def get_transcript(self, audio):
         try:       
             #return
-            model = whisper.load_model("small")
+            model = whisper.load_model("large")
             result = model.transcribe(audio, fp16=False)
             return result["text"]
         except FileNotFoundError:
